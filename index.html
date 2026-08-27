@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Formulário - Boaretto</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f3f4f6;
+            color: #222;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+
+        .titulo {
+            text-align: center;
+            margin: 0;
+            color: #374151;
+            font-size: 24px;
+        }
+
+        .subtitulo {
+            text-align: center;
+            color: #6b7280;
+            margin: 10px 0 30px;
+            line-height: 1.5;
+        }
+
+        .secao {
+            margin-bottom: 28px;
+        }
+
+        .secao-titulo {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1f2937;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+            margin-bottom: 18px;
+        }
+
+        .campo {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #374151;
+            font-size: 14px;
+        }
+
+        .obrigatorio {
+            color: #dc2626;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            transition: 0.2s;
+            background: #fff;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .linha {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .linha-cep-cidade {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 15px;
+        }
+
+        /* ==========================================
+           OPÇÕES SIM / NÃO
+        ========================================== */
+
+        .opcoes {
+            display: flex;
+            gap: 12px;
+        }
+
+        .opcao {
+            flex: 1;
+            border: 2px solid #e5e7eb;
+            border-radius: 9px;
+            padding: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+            background: #fff;
+        }
+
+        .opcao:hover {
+            border-color: #25D366;
+        }
+
+        .opcao.selecionado {
+            background: #25D366;
+            color: white;
+            border-color: #25D366;
+        }
+
+        .opcao input {
+            display: none;
+        }
+
+        /* ==========================================
+           VALOR TRANSFERÊNCIA
+        ========================================== */
+
+        #campoValorTransferencia {
+            display: none;
+            margin-top: 15px;
+        }
+
+        /* ==========================================
+           AVISO
+        ========================================== */
+
+        .info {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 13px 15px;
+            border-radius: 5px;
+            color: #374151;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        /* ==========================================
+           BOTÃO
+        ========================================== */
+
+        .botao {
+            width: 100%;
+            border: none;
+            padding: 16px;
+            border-radius: 9px;
+            background: #25D366;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .botao:hover {
+            background: #1ebe5d;
+            transform: translateY(-1px);
+        }
+
+        .botao:active {
+            transform: translateY(0);
+        }
+
+        /* ==========================================
+           RODAPÉ
+        ========================================== */
+
+        .rodape {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+
+        /* ==========================================
+           RESPONSIVO
+        ========================================== */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 12px 8px;
+            }
+
+            .container {
+                padding: 25px 18px;
+                border-radius: 12px;
+            }
+
+            .logo {
+                font-size: 26px;
+            }
+
+            .titulo {
+                font-size: 21px;
+            }
+
+            .subtitulo {
+                font-size: 14px;
+            }
+
+            .linha,
+            .linha-cep-cidade {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .opcoes {
+                flex-direction: row;
+            }
+
+            .opcao {
+                padding: 13px 8px;
+            }
+
+            input,
+            textarea,
+            select {
+                font-size: 16px;
+            }
+
+            .botao {
+                padding: 17px 12px;
+                font-size: 16px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <!-- ==========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <div class="logo">
+        BOARETTO
+    </div>
+
+    <h1 class="titulo">
+        Dados do Comprador
+    </h1>
+
+    <p class="subtitulo">
+        Preencha os dados abaixo com atenção.
+        Após preencher, clique em
+        <strong>Enviar dados pelo WhatsApp</strong>.
+    </p>
+
+
+    <div class="info">
+
+        <strong>Importante:</strong>
+        confira todos os dados antes de enviar.
+        As informações serão encaminhadas diretamente
+        para o WhatsApp da Boaretto.
+
+    </div>
+
+
+    <form id="formulario">
+
+
+        <!-- ==========================================
+             DADOS DO COMPRADOR
+        ========================================== -->
+
+        <div class="secao">
+
+            <div class="secao-titulo">
+                👤 Dados do comprador
+            </div>
+
+
+            <div class="campo">
+
+                <label for="nome">
+                    Nome completo
+                    <span class="obrigatorio">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    placeholder="Digite o nome completo do comprador"
+                    autocomplete="name"
+                    required>
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="contato">
+                    Contato / WhatsApp
+                    <span class="obrigatorio">*</span>
+                </label>
+
+                <input
+                    type="tel"
+                    id="contato"
+                    name="contato"
+                    placeholder="Ex.: (16) 99999-9999"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    maxlength="15"
+                    required>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             ENDEREÇO
+        ========================================== -->
+
+        <div class="secao">
+
+            <div class="secao-titulo">
+                📍 Endereço
+            </div>
+
+
+            <div class="linha">
+
+                <div class="campo">
+
+                    <label for="rua">
+                        Rua / Logradouro
+                        <span class="obrigatorio">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="rua"
+                        name="rua"
+                        placeholder="Nome da rua"
+                        autocomplete="street-address"
+                        required>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="numero">
+                        Número
+                        <span class="obrigatorio">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="numero"
+                        name="numero"
+                        placeholder="Número"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="complemento">
+                    Complemento
+                </label>
+
+                <input
+                    type="text"
+                    id="complemento"
+                    name="complemento"
+                    placeholder="Apartamento, casa, bloco, etc.">
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="bairro">
+                    Bairro
+                    <span class="obrigatorio">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="bairro"
+                    name="bairro"
+                    placeholder="Nome do bairro"
+                    required>
+
+            </div>
+
+
+            <div class="linha-cep-cidade">
+
+                <div class="campo">
+
+                    <label for="cep">
+                        CEP
+                        <span class="obrigatorio">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cep"
+                        name="cep"
+                        placeholder="00000-000"
+                        maxlength="9"
+                        inputmode="numeric"
+                        autocomplete="postal-code"
+                        required>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="cidade">
+                        Cidade
+                        <span class="obrigatorio">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cidade"
+                        name="cidade"
+                        placeholder="Cidade"
+                        autocomplete="address-level2"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                 ESTADO
+            ====================================== -->
+
+            <div class="campo">
+
+                <label for="estado">
+                    Estado
+                    <span class="obrigatorio">*</span>
+                </label>
+
+                <select
+                    id="estado"
+                    name="estado"
+                    required>
+
+                    <option value="">
+                        Selecione o estado
+                    </option>
+
+                    <option value="AC">Acre - AC</option>
+                    <option value="AL">Alagoas - AL</option>
+                    <option value="AP">Amapá - AP</option>
+                    <option value="AM">Amazonas - AM</option>
+                    <option value="BA">Bahia - BA</option>
+                    <option value="CE">Ceará - CE</option>
+                    <option value="DF">Distrito Federal - DF</option>
+                    <option value="ES">Espírito Santo - ES</option>
+                    <option value="GO">Goiás - GO</option>
+                    <option value="MA">Maranhão - MA</option>
+                    <option value="MT">Mato Grosso - MT</option>
+                    <option value="MS">Mato Grosso do Sul - MS</option>
+                    <option value="MG">Minas Gerais - MG</option>
+                    <option value="PA">Pará - PA</option>
+                    <option value="PB">Paraíba - PB</option>
+                    <option value="PR">Paraná - PR</option>
+                    <option value="PE">Pernambuco - PE</option>
+                    <option value="PI">Piauí - PI</option>
+                    <option value="RJ">Rio de Janeiro - RJ</option>
+                    <option value="RN">Rio Grande do Norte - RN</option>
+                    <option value="RS">Rio Grande do Sul - RS</option>
+                    <option value="RO">Rondônia - RO</option>
+                    <option value="RR">Roraima - RR</option>
+                    <option value="SC">Santa Catarina - SC</option>
+                    <option value="SP">São Paulo - SP</option>
+                    <option value="SE">Sergipe - SE</option>
+                    <option value="TO">Tocantins - TO</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             TRANSFERÊNCIA
+        ========================================== -->
+
+        <div class="secao">
+
+            <div class="secao-titulo">
+                📄 Transferência
+            </div>
+
+
+            <div class="campo">
+
+                <label>
+                    A transferência será feita conosco?
+                    <span class="obrigatorio">*</span>
+                </label>
+
+
+                <div class="opcoes">
+
+                    <label
+                        class="opcao"
+                        id="opcaoSim">
+
+                        <input
+                            type="radio"
+                            name="transferencia"
+                            value="Sim"
+                            onclick="mostrarValor(true)"
+                            required>
+
+                        <span>SIM</span>
+
+                    </label>
+
+
+                    <label
+                        class="opcao"
+                        id="opcaoNao">
+
+                        <input
+                            type="radio"
+                            name="transferencia"
+                            value="Não"
+                            onclick="mostrarValor(false)"
+                            required>
+
+                        <span>NÃO</span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="campo"
+                id="campoValorTransferencia">
+
+                <label for="valorTransferencia">
+
+                    Valor da transferência
+                    <span class="obrigatorio">*</span>
+
+                </label>
+
+                <input
+                    type="text"
+                    id="valorTransferencia"
+                    name="valorTransferencia"
+                    placeholder="R$ 0,00"
+                    inputmode="numeric">
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             DADOS DA VENDA
+        ========================================== -->
+
+        <div class="secao">
+
+            <div class="secao-titulo">
+                💰 Dados da venda
+            </div>
+
+
+            <div class="campo">
+
+                <label for="formaPagamento">
+
+                    Dados da forma de pagamento detalhada
+                    <span class="obrigatorio">*</span>
+
+                </label>
+
+                <textarea
+                    id="formaPagamento"
+                    name="formaPagamento"
+                    placeholder="Informe detalhadamente como será realizado o pagamento.
+
+Exemplo:
+R$ 20.000,00 de entrada via PIX;
+R$ 30.000,00 financiado em 36 parcelas;
+R$ 5.000,00 na entrega."
+                    required></textarea>
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="valorTotal">
+
+                    Valor total da venda
+                    <span class="obrigatorio">*</span>
+
+                </label>
+
+                <input
+                    type="text"
+                    id="valorTotal"
+                    name="valorTotal"
+                    placeholder="R$ 0,00"
+                    inputmode="numeric"
+                    required>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             BOTÃO
+        ========================================== -->
+
+        <button
+            type="submit"
+            class="botao">
+
+            📲 Enviar dados pelo WhatsApp
+
+        </button>
+
+
+    </form>
+
+
+    <div class="rodape">
+
+        Boaretto — Formulário de dados
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+    /* ==================================================
+       FUNÇÃO PARA FORMATAR DINHEIRO
+       
+       Exemplo:
+       1     → R$ 0,01
+       100   → R$ 1,00
+       5000  → R$ 50,00
+       50000 → R$ 500,00
+       ================================================== */
+
+    function formatarMoeda(valor) {
+
+        let numeros =
+            valor
+                .replace(/\D/g, "");
+
+
+        if (!numeros) {
+
+            return "";
+
+        }
+
+
+        numeros =
+            numeros.padStart(3, "0");
+
+
+        let centavos =
+            numeros.slice(-2);
+
+
+        let reais =
+            numeros.slice(
+                0,
+                -2
+            );
+
+
+        reais =
+            reais.replace(
+                /^0+(?=\d)/,
+                ""
+            );
+
+
+        reais =
+            reais.replace(
+                /\B(?=(\d{3})+(?!\d))/g,
+                "."
+            );
+
+
+        return "R$ "
+            + reais
+            + ","
+            + centavos;
+
+    }
+
+
+    /* ==================================================
+       MÁSCARA DE DINHEIRO
+    ================================================== */
+
+    function aplicarMascaraDinheiro(id) {
+
+        const campo =
+            document.getElementById(id);
+
+
+        campo.addEventListener(
+            "input",
+            function(e) {
+
+                e.target.value =
+                    formatarMoeda(
+                        e.target.value
+                    );
+
+            }
+        );
+
+    }
+
+
+    aplicarMascaraDinheiro(
+        "valorTransferencia"
+    );
+
+
+    aplicarMascaraDinheiro(
+        "valorTotal"
+    );
+
+
+    /* ==================================================
+       MOSTRAR VALOR DA TRANSFERÊNCIA
+    ================================================== */
+
+    function mostrarValor(sim) {
+
+        const campo =
+            document.getElementById(
+                "campoValorTransferencia"
+            );
+
+        const input =
+            document.getElementById(
+                "valorTransferencia"
+            );
+
+        const opcaoSim =
+            document.getElementById(
+                "opcaoSim"
+            );
+
+        const opcaoNao =
+            document.getElementById(
+                "opcaoNao"
+            );
+
+
+        opcaoSim.classList.remove(
+            "selecionado"
+        );
+
+        opcaoNao.classList.remove(
+            "selecionado"
+        );
+
+
+        if (sim) {
+
+            campo.style.display =
+                "block";
+
+            input.required = true;
+
+            opcaoSim.classList.add(
+                "selecionado"
+            );
+
+        }
+
+        else {
+
+            campo.style.display =
+                "none";
+
+            input.required = false;
+
+            input.value = "";
+
+            opcaoNao.classList.add(
+                "selecionado"
+            );
+
+        }
+
+    }
+
+
+    /* ==================================================
+       MÁSCARA CEP
+    ================================================== */
+
+    document
+        .getElementById("cep")
+        .addEventListener(
+            "input",
+            function(e) {
+
+                let valor =
+                    e.target.value
+                        .replace(/\D/g, "");
+
+
+                if (valor.length > 8) {
+
+                    valor =
+                        valor.substring(0, 8);
+
+                }
+
+
+                if (valor.length > 5) {
+
+                    valor =
+                        valor.substring(0, 5)
+                        + "-"
+                        + valor.substring(5);
+
+                }
+
+
+                e.target.value =
+                    valor;
+
+            }
+        );
+
+
+    /* ==================================================
+       MÁSCARA TELEFONE
+    ================================================== */
+
+    document
+        .getElementById("contato")
+        .addEventListener(
+            "input",
+            function(e) {
+
+                let valor =
+                    e.target.value
+                        .replace(/\D/g, "");
+
+
+                if (valor.length > 11) {
+
+                    valor =
+                        valor.substring(0, 11);
+
+                }
+
+
+                if (valor.length <= 2) {
+
+                    e.target.value =
+                        valor.length
+                            ? "(" + valor
+                            : "";
+
+                    return;
+
+                }
+
+
+                if (valor.length <= 6) {
+
+                    e.target.value =
+                        "("
+                        + valor.substring(0, 2)
+                        + ")"
+                        + valor.substring(2);
+
+                    return;
+
+                }
+
+
+                if (valor.length <= 10) {
+
+                    e.target.value =
+                        "("
+                        + valor.substring(0, 2)
+                        + ")"
+                        + valor.substring(2, 6)
+                        + "-"
+                        + valor.substring(6);
+
+                    return;
+
+                }
+
+
+                e.target.value =
+                    "("
+                    + valor.substring(0, 2)
+                    + ")"
+                    + valor.substring(2, 7)
+                    + "-"
+                    + valor.substring(7, 11);
+
+            }
+        );
+
+
+    /* ==================================================
+       ENVIO PARA WHATSAPP
+    ================================================== */
+
+    document
+        .getElementById("formulario")
+        .addEventListener(
+            "submit",
+            function(e) {
+
+                e.preventDefault();
+
+
+                /* ======================================
+                   CAPTURA DOS DADOS
+                ====================================== */
+
+                const nome =
+                    document
+                        .getElementById("nome")
+                        .value
+                        .trim();
+
+
+                const contato =
+                    document
+                        .getElementById("contato")
+                        .value
+                        .trim();
+
+
+                const rua =
+                    document
+                        .getElementById("rua")
+                        .value
+                        .trim();
+
+
+                const numero =
+                    document
+                        .getElementById("numero")
+                        .value
+                        .trim();
+
+
+                const complemento =
+                    document
+                        .getElementById("complemento")
+                        .value
+                        .trim();
+
+
+                const bairro =
+                    document
+                        .getElementById("bairro")
+                        .value
+                        .trim();
+
+
+                const cep =
+                    document
+                        .getElementById("cep")
+                        .value
+                        .trim();
+
+
+                const cidade =
+                    document
+                        .getElementById("cidade")
+                        .value
+                        .trim();
+
+
+                /* ======================================
+                   ESTADO
+                   
+                   IMPORTANTE:
+                   Aqui pegamos SOMENTE a sigla.
+                   
+                   Exemplo:
+                   SP
+                   MG
+                   RJ
+                   PR
+                   ====================================== */
+
+                const estado =
+                    document
+                        .getElementById("estado")
+                        .value;
+
+
+                const transferenciaSelecionada =
+                    document.querySelector(
+                        'input[name="transferencia"]:checked'
+                    );
+
+
+                if (!transferenciaSelecionada) {
+
+                    alert(
+                        "Selecione se a transferência será feita conosco."
+                    );
+
+                    return;
+
+                }
+
+
+                const transferencia =
+                    transferenciaSelecionada.value;
+
+
+                const valorTransferencia =
+                    document
+                        .getElementById(
+                            "valorTransferencia"
+                        )
+                        .value
+                        .trim();
+
+
+                const formaPagamento =
+                    document
+                        .getElementById(
+                            "formaPagamento"
+                        )
+                        .value
+                        .trim();
+
+
+                const valorTotal =
+                    document
+                        .getElementById(
+                            "valorTotal"
+                        )
+                        .value
+                        .trim();
+
+
+                /* ======================================
+                   MONTA O ENDEREÇO
+                ====================================== */
+
+                let endereco =
+                    "Rua/N°: "
+                    + rua
+                    + ", "
+                    + numero;
+
+
+                /*
+                Só adiciona complemento
+                se o vendedor preencher.
+                */
+
+                if (complemento) {
+
+                    endereco +=
+                        ", Complemento: "
+                        + complemento;
+
+                }
+
+
+                endereco +=
+                    ", Bairro: "
+                    + bairro
+                    + ", Cep: "
+                    + cep
+                    + ", Cidade: "
+                    + cidade
+                    + " - "
+                    + estado;
+
+
+                /* ======================================
+                   MONTA A MENSAGEM
+                ====================================== */
+
+                let mensagem =
+                    "*NOVA VENDA - BOARETTO*"
+                    + "\n\n";
+
+
+                mensagem +=
+                    "*Nome do comprador:*"
+                    + "\n"
+                    + nome
+                    + "\n\n";
+
+
+                mensagem +=
+                    "*Endereço:*"
+                    + "\n"
+                    + endereco
+                    + "\n\n";
+
+
+                mensagem +=
+                    "*Contato:*"
+                    + "\n"
+                    + contato
+                    + "\n\n";
+
+
+                mensagem +=
+                    "*Transferência será feita conosco:*"
+                    + "\n"
+                    + transferencia
+                    + "\n";
+
+
+                /*
+                Só mostra o valor da transferência
+                quando a resposta for SIM.
+                */
+
+                if (transferencia === "Sim") {
+
+                    mensagem +=
+                        "*Valor da transferência:*"
+                        + "\n"
+                        + valorTransferencia
+                        + "\n";
+
+                }
+
+
+                mensagem +=
+                    "\n";
+
+
+                mensagem +=
+                    "*Forma de pagamento:*"
+                    + "\n"
+                    + formaPagamento
+                    + "\n\n";
+
+
+                mensagem +=
+                    "*Valor total da venda:*"
+                    + "\n"
+                    + valorTotal;
+
+
+                /* ======================================
+                   WHATSAPP DA BOARETTO
+                ====================================== */
+
+                const numeroWhatsApp =
+                    "5516992365813";
+
+
+                /* ======================================
+                   CRIA LINK
+                ====================================== */
+
+                const url =
+                    "https://wa.me/"
+                    + numeroWhatsApp
+                    + "?text="
+                    + encodeURIComponent(
+                        mensagem
+                    );
+
+
+                /* ======================================
+                   ABRE WHATSAPP
+                ====================================== */
+
+                window.open(
+                    url,
+                    "_blank"
+                );
+
+            }
+        );
+
+</script>
+
+</body>
+
+</html>
