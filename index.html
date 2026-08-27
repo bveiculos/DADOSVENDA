@@ -2,10 +2,15 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Formulário - Boaretto</title>
+
 
     <style>
 
@@ -13,225 +18,417 @@
             box-sizing: border-box;
         }
 
+
         body {
+
             margin: 0;
+
             padding: 30px 15px;
-            font-family: Arial, Helvetica, sans-serif;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
             background: #f3f4f6;
+
             color: #222;
+
         }
+
 
         .container {
+
             max-width: 700px;
+
             margin: auto;
+
             background: #ffffff;
+
             padding: 35px;
+
             border-radius: 16px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+
+            box-shadow:
+                0 5px 25px
+                rgba(0, 0, 0, 0.08);
+
         }
+
 
         .logo {
+
             text-align: center;
+
             font-size: 30px;
+
             font-weight: bold;
+
             color: #1f2937;
+
             margin-bottom: 5px;
+
         }
+
 
         .titulo {
+
             text-align: center;
+
             margin: 0;
+
             color: #374151;
+
             font-size: 24px;
+
         }
+
 
         .subtitulo {
+
             text-align: center;
+
             color: #6b7280;
+
             margin: 10px 0 30px;
+
             line-height: 1.5;
+
         }
+
 
         .secao {
+
             margin-bottom: 28px;
+
         }
+
 
         .secao-titulo {
+
             font-size: 18px;
+
             font-weight: bold;
+
             color: #1f2937;
-            border-bottom: 2px solid #e5e7eb;
+
+            border-bottom:
+                2px solid #e5e7eb;
+
             padding-bottom: 10px;
+
             margin-bottom: 18px;
+
         }
+
 
         .campo {
+
             margin-bottom: 16px;
+
         }
+
 
         label {
+
             display: block;
+
             font-weight: bold;
+
             margin-bottom: 7px;
+
             color: #374151;
+
             font-size: 14px;
+
         }
 
+
         .obrigatorio {
+
             color: #dc2626;
+
         }
+
 
         input,
         textarea,
         select {
+
             width: 100%;
+
             padding: 13px 14px;
-            border: 1px solid #d1d5db;
+
+            border:
+                1px solid #d1d5db;
+
             border-radius: 8px;
+
             font-size: 15px;
+
             font-family: inherit;
+
             outline: none;
+
             transition: 0.2s;
+
             background: #fff;
+
         }
+
 
         input:focus,
         textarea:focus,
         select:focus {
+
             border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37, 99, 235, 0.10);
+
         }
+
 
         textarea {
+
             min-height: 120px;
+
             resize: vertical;
+
         }
+
 
         .linha {
+
             display: grid;
-            grid-template-columns: 1fr 1fr;
+
+            grid-template-columns:
+                1fr 1fr;
+
             gap: 15px;
+
         }
 
-        .linha-cep-cidade {
+
+        .linha-cep {
+
             display: grid;
-            grid-template-columns: 180px 1fr;
+
+            grid-template-columns:
+                220px 1fr;
+
             gap: 15px;
+
         }
+
+
+        /* ==========================================
+           STATUS DO CEP
+        ========================================== */
+
+        .status-cep {
+
+            display: none;
+
+            margin-top: 7px;
+
+            font-size: 13px;
+
+            color: #6b7280;
+
+        }
+
+
+        .status-cep.carregando {
+
+            display: block;
+
+            color: #2563eb;
+
+        }
+
+
+        .status-cep.sucesso {
+
+            display: block;
+
+            color: #16a34a;
+
+        }
+
+
+        .status-cep.erro {
+
+            display: block;
+
+            color: #dc2626;
+
+        }
+
 
         /* ==========================================
            OPÇÕES SIM / NÃO
         ========================================== */
 
         .opcoes {
+
             display: flex;
+
             gap: 12px;
+
         }
+
 
         .opcao {
+
             flex: 1;
-            border: 2px solid #e5e7eb;
+
+            border:
+                2px solid #e5e7eb;
+
             border-radius: 9px;
+
             padding: 14px;
+
             text-align: center;
+
             cursor: pointer;
+
             transition: 0.2s;
+
             background: #fff;
+
         }
+
 
         .opcao:hover {
+
             border-color: #25D366;
+
         }
+
 
         .opcao.selecionado {
+
             background: #25D366;
+
             color: white;
+
             border-color: #25D366;
+
         }
 
+
         .opcao input {
+
             display: none;
+
         }
+
 
         /* ==========================================
            VALOR TRANSFERÊNCIA
         ========================================== */
 
         #campoValorTransferencia {
+
             display: none;
+
             margin-top: 15px;
+
         }
 
-        /* ==========================================
-           STATUS CEP
-        ========================================== */
-
-        .status-cep {
-            display: none;
-            margin-top: 7px;
-            font-size: 13px;
-            color: #2563eb;
-        }
-
-        .status-cep.erro {
-            color: #dc2626;
-        }
-
-        .status-cep.sucesso {
-            color: #16a34a;
-        }
 
         /* ==========================================
            AVISO
         ========================================== */
 
         .info {
+
             background: #eff6ff;
-            border-left: 4px solid #2563eb;
+
+            border-left:
+                4px solid #2563eb;
+
             padding: 13px 15px;
+
             border-radius: 5px;
+
             color: #374151;
+
             font-size: 13px;
+
             line-height: 1.5;
+
             margin-bottom: 25px;
+
         }
+
 
         /* ==========================================
            BOTÃO
         ========================================== */
 
         .botao {
+
             width: 100%;
+
             border: none;
+
             padding: 16px;
+
             border-radius: 9px;
+
             background: #25D366;
+
             color: white;
+
             font-size: 17px;
+
             font-weight: bold;
+
             cursor: pointer;
+
             transition: 0.2s;
+
         }
+
 
         .botao:hover {
+
             background: #1ebe5d;
-            transform: translateY(-1px);
+
+            transform:
+                translateY(-1px);
+
         }
 
+
         .botao:active {
-            transform: translateY(0);
+
+            transform:
+                translateY(0);
+
         }
+
 
         /* ==========================================
            RODAPÉ
         ========================================== */
 
         .rodape {
+
             text-align: center;
+
             color: #9ca3af;
+
             font-size: 12px;
+
             margin-top: 20px;
+
         }
+
 
         /* ==========================================
            RESPONSIVO
@@ -240,49 +437,86 @@
         @media (max-width: 600px) {
 
             body {
-                padding: 12px 8px;
+
+                padding:
+                    12px 8px;
+
             }
+
 
             .container {
-                padding: 25px 18px;
+
+                padding:
+                    25px 18px;
+
                 border-radius: 12px;
+
             }
+
 
             .logo {
+
                 font-size: 26px;
+
             }
+
 
             .titulo {
+
                 font-size: 21px;
+
             }
+
 
             .subtitulo {
+
                 font-size: 14px;
+
             }
+
 
             .linha,
-            .linha-cep-cidade {
-                grid-template-columns: 1fr;
+            .linha-cep {
+
+                grid-template-columns:
+                    1fr;
+
                 gap: 0;
+
             }
+
 
             .opcoes {
+
                 flex-direction: row;
+
             }
 
+
             .opcao {
-                padding: 13px 8px;
+
+                padding:
+                    13px 8px;
+
             }
+
 
             input,
             textarea,
             select {
+
                 font-size: 16px;
+
             }
 
+
             .botao {
-                padding: 17px 12px;
+
+                padding:
+                    17px 12px;
+
                 font-size: 16px;
+
             }
 
         }
@@ -294,29 +528,45 @@
 
 <body>
 
+
 <div class="container">
+
+
+    <!-- ==========================================
+         CABEÇALHO
+    ========================================== -->
 
     <div class="logo">
         BOARETTO
     </div>
 
+
     <h1 class="titulo">
         Dados do Comprador
     </h1>
 
+
     <p class="subtitulo">
+
         Preencha os dados abaixo com atenção.
+
         Após preencher, clique em
-        <strong>Enviar dados pelo WhatsApp</strong>.
+
+        <strong>
+            Enviar dados pelo WhatsApp
+        </strong>.
+
     </p>
 
 
     <div class="info">
 
         <strong>Importante:</strong>
+
         confira todos os dados antes de enviar.
-        As informações serão encaminhadas diretamente
-        para o WhatsApp da Boaretto.
+
+        As informações serão encaminhadas
+        diretamente para o WhatsApp da Boaretto.
 
     </div>
 
@@ -330,6 +580,7 @@
 
         <div class="secao">
 
+
             <div class="secao-titulo">
                 👤 Dados do comprador
             </div>
@@ -338,9 +589,15 @@
             <div class="campo">
 
                 <label for="nome">
+
                     Nome completo
-                    <span class="obrigatorio">*</span>
+
+                    <span class="obrigatorio">
+                        *
+                    </span>
+
                 </label>
+
 
                 <input
                     type="text"
@@ -356,9 +613,15 @@
             <div class="campo">
 
                 <label for="contato">
+
                     Contato / WhatsApp
-                    <span class="obrigatorio">*</span>
+
+                    <span class="obrigatorio">
+                        *
+                    </span>
+
                 </label>
+
 
                 <input
                     type="tel"
@@ -372,6 +635,7 @@
 
             </div>
 
+
         </div>
 
 
@@ -381,27 +645,75 @@
 
         <div class="secao">
 
+
             <div class="secao-titulo">
                 📍 Endereço
             </div>
 
 
-            <!-- RUA E NÚMERO -->
+            <!-- ======================================
+                 CEP PRIMEIRO
+            ====================================== -->
+
+            <div class="campo">
+
+
+                <label for="cep">
+
+                    CEP
+
+                    <span class="obrigatorio">
+                        *
+                    </span>
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="cep"
+                    name="cep"
+                    placeholder="00000-000"
+                    maxlength="9"
+                    inputmode="numeric"
+                    autocomplete="postal-code"
+                    required>
+
+
+                <div
+                    id="statusCep"
+                    class="status-cep">
+                </div>
+
+
+            </div>
+
+
+            <!-- ======================================
+                 RUA E NÚMERO
+            ====================================== -->
 
             <div class="linha">
+
 
                 <div class="campo">
 
                     <label for="rua">
+
                         Rua / Logradouro
-                        <span class="obrigatorio">*</span>
+
+                        <span class="obrigatorio">
+                            *
+                        </span>
+
                     </label>
+
 
                     <input
                         type="text"
                         id="rua"
                         name="rua"
-                        placeholder="Digite o CEP para preencher automaticamente"
+                        placeholder="Será preenchido pelo CEP"
                         autocomplete="street-address"
                         required>
 
@@ -411,9 +723,15 @@
                 <div class="campo">
 
                     <label for="numero">
+
                         Número
-                        <span class="obrigatorio">*</span>
+
+                        <span class="obrigatorio">
+                            *
+                        </span>
+
                     </label>
+
 
                     <input
                         type="text"
@@ -424,16 +742,21 @@
 
                 </div>
 
+
             </div>
 
 
-            <!-- COMPLEMENTO -->
+            <!-- ======================================
+                 COMPLEMENTO
+            ====================================== -->
 
             <div class="campo">
+
 
                 <label for="complemento">
                     Complemento
                 </label>
+
 
                 <input
                     type="text"
@@ -441,126 +764,212 @@
                     name="complemento"
                     placeholder="Apartamento, casa, bloco, etc.">
 
+
             </div>
 
 
-            <!-- BAIRRO -->
+            <!-- ======================================
+                 BAIRRO
+            ====================================== -->
 
             <div class="campo">
 
+
                 <label for="bairro">
+
                     Bairro
-                    <span class="obrigatorio">*</span>
+
+                    <span class="obrigatorio">
+                        *
+                    </span>
+
                 </label>
+
 
                 <input
                     type="text"
                     id="bairro"
                     name="bairro"
-                    placeholder="Será preenchido automaticamente pelo CEP"
+                    placeholder="Será preenchido pelo CEP"
                     required>
 
-            </div>
-
-
-            <!-- CEP E CIDADE -->
-
-            <div class="linha-cep-cidade">
-
-                <div class="campo">
-
-                    <label for="cep">
-                        CEP
-                        <span class="obrigatorio">*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="cep"
-                        name="cep"
-                        placeholder="00000-000"
-                        maxlength="9"
-                        inputmode="numeric"
-                        autocomplete="postal-code"
-                        required>
-
-                    <div
-                        id="statusCep"
-                        class="status-cep">
-                    </div>
-
-                </div>
-
-
-                <div class="campo">
-
-                    <label for="cidade">
-                        Cidade
-                        <span class="obrigatorio">*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="cidade"
-                        name="cidade"
-                        placeholder="Será preenchida automaticamente pelo CEP"
-                        autocomplete="address-level2"
-                        required>
-
-                </div>
 
             </div>
 
 
-            <!-- ESTADO -->
+            <!-- ======================================
+                 CIDADE
+            ====================================== -->
 
             <div class="campo">
 
-                <label for="estado">
-                    Estado
-                    <span class="obrigatorio">*</span>
+
+                <label for="cidade">
+
+                    Cidade
+
+                    <span class="obrigatorio">
+                        *
+                    </span>
+
                 </label>
+
+
+                <input
+                    type="text"
+                    id="cidade"
+                    name="cidade"
+                    placeholder="Será preenchida pelo CEP"
+                    autocomplete="address-level2"
+                    required>
+
+
+            </div>
+
+
+            <!-- ======================================
+                 ESTADO
+            ====================================== -->
+
+            <div class="campo">
+
+
+                <label for="estado">
+
+                    Estado
+
+                    <span class="obrigatorio">
+                        *
+                    </span>
+
+                </label>
+
 
                 <select
                     id="estado"
                     name="estado"
                     required>
 
+
                     <option value="">
                         Selecione o estado
                     </option>
 
-                    <option value="AC">AC</option>
-                    <option value="AL">AL</option>
-                    <option value="AP">AP</option>
-                    <option value="AM">AM</option>
-                    <option value="BA">BA</option>
-                    <option value="CE">CE</option>
-                    <option value="DF">DF</option>
-                    <option value="ES">ES</option>
-                    <option value="GO">GO</option>
-                    <option value="MA">MA</option>
-                    <option value="MT">MT</option>
-                    <option value="MS">MS</option>
-                    <option value="MG">MG</option>
-                    <option value="PA">PA</option>
-                    <option value="PB">PB</option>
-                    <option value="PR">PR</option>
-                    <option value="PE">PE</option>
-                    <option value="PI">PI</option>
-                    <option value="RJ">RJ</option>
-                    <option value="RN">RN</option>
-                    <option value="RS">RS</option>
-                    <option value="RO">RO</option>
-                    <option value="RR">RR</option>
-                    <option value="SC">SC</option>
-                    <option value="SP">SP</option>
-                    <option value="SE">SE</option>
-                    <option value="TO">TO</option>
+
+                    <option value="AC">
+                        AC
+                    </option>
+
+                    <option value="AL">
+                        AL
+                    </option>
+
+                    <option value="AP">
+                        AP
+                    </option>
+
+                    <option value="AM">
+                        AM
+                    </option>
+
+                    <option value="BA">
+                        BA
+                    </option>
+
+                    <option value="CE">
+                        CE
+                    </option>
+
+                    <option value="DF">
+                        DF
+                    </option>
+
+                    <option value="ES">
+                        ES
+                    </option>
+
+                    <option value="GO">
+                        GO
+                    </option>
+
+                    <option value="MA">
+                        MA
+                    </option>
+
+                    <option value="MT">
+                        MT
+                    </option>
+
+                    <option value="MS">
+                        MS
+                    </option>
+
+                    <option value="MG">
+                        MG
+                    </option>
+
+                    <option value="PA">
+                        PA
+                    </option>
+
+                    <option value="PB">
+                        PB
+                    </option>
+
+                    <option value="PR">
+                        PR
+                    </option>
+
+                    <option value="PE">
+                        PE
+                    </option>
+
+                    <option value="PI">
+                        PI
+                    </option>
+
+                    <option value="RJ">
+                        RJ
+                    </option>
+
+                    <option value="RN">
+                        RN
+                    </option>
+
+                    <option value="RS">
+                        RS
+                    </option>
+
+                    <option value="RO">
+                        RO
+                    </option>
+
+                    <option value="RR">
+                        RR
+                    </option>
+
+                    <option value="SC">
+                        SC
+                    </option>
+
+                    <option value="SP">
+                        SP
+                    </option>
+
+                    <option value="SE">
+                        SE
+                    </option>
+
+                    <option value="TO">
+                        TO
+                    </option>
+
 
                 </select>
 
+
             </div>
+
 
         </div>
 
@@ -571,6 +980,7 @@
 
         <div class="secao">
 
+
             <div class="secao-titulo">
                 📄 Transferência
             </div>
@@ -578,17 +988,25 @@
 
             <div class="campo">
 
+
                 <label>
+
                     A transferência será feita conosco?
-                    <span class="obrigatorio">*</span>
+
+                    <span class="obrigatorio">
+                        *
+                    </span>
+
                 </label>
 
 
                 <div class="opcoes">
 
+
                     <label
                         class="opcao"
                         id="opcaoSim">
+
 
                         <input
                             type="radio"
@@ -597,7 +1015,11 @@
                             onclick="mostrarValor(true)"
                             required>
 
-                        <span>SIM</span>
+
+                        <span>
+                            SIM
+                        </span>
+
 
                     </label>
 
@@ -606,6 +1028,7 @@
                         class="opcao"
                         id="opcaoNao">
 
+
                         <input
                             type="radio"
                             name="transferencia"
@@ -613,11 +1036,17 @@
                             onclick="mostrarValor(false)"
                             required>
 
-                        <span>NÃO</span>
+
+                        <span>
+                            NÃO
+                        </span>
+
 
                     </label>
 
+
                 </div>
+
 
             </div>
 
@@ -626,12 +1055,20 @@
                 class="campo"
                 id="campoValorTransferencia">
 
-                <label for="valorTransferencia">
+
+                <label
+                    for="valorTransferencia">
+
 
                     Valor da transferência
-                    <span class="obrigatorio">*</span>
+
+                    <span class="obrigatorio">
+                        *
+                    </span>
+
 
                 </label>
+
 
                 <input
                     type="text"
@@ -640,7 +1077,9 @@
                     placeholder="R$ 0,00"
                     inputmode="numeric">
 
+
             </div>
+
 
         </div>
 
@@ -651,6 +1090,7 @@
 
         <div class="secao">
 
+
             <div class="secao-titulo">
                 💰 Dados da venda
             </div>
@@ -658,12 +1098,20 @@
 
             <div class="campo">
 
-                <label for="formaPagamento">
+
+                <label
+                    for="formaPagamento">
+
 
                     Dados da forma de pagamento detalhada
-                    <span class="obrigatorio">*</span>
+
+                    <span class="obrigatorio">
+                        *
+                    </span>
+
 
                 </label>
+
 
                 <textarea
                     id="formaPagamento"
@@ -676,17 +1124,26 @@ R$ 30.000,00 financiado em 36 parcelas;
 R$ 5.000,00 na entrega."
                     required></textarea>
 
+
             </div>
 
 
             <div class="campo">
 
-                <label for="valorTotal">
+
+                <label
+                    for="valorTotal">
+
 
                     Valor total da venda
-                    <span class="obrigatorio">*</span>
+
+                    <span class="obrigatorio">
+                        *
+                    </span>
+
 
                 </label>
+
 
                 <input
                     type="text"
@@ -696,7 +1153,9 @@ R$ 5.000,00 na entrega."
                     inputmode="numeric"
                     required>
 
+
             </div>
+
 
         </div>
 
@@ -709,7 +1168,9 @@ R$ 5.000,00 na entrega."
             type="submit"
             class="botao">
 
+
             📲 Enviar dados pelo WhatsApp
+
 
         </button>
 
@@ -723,6 +1184,7 @@ R$ 5.000,00 na entrega."
 
     </div>
 
+
 </div>
 
 
@@ -730,26 +1192,35 @@ R$ 5.000,00 na entrega."
 
 
     /* ==================================================
-       FORMATAR DINHEIRO
+       FORMATAÇÃO DE DINHEIRO
     ================================================== */
 
+
     function formatarMoeda(valor) {
+
 
         let numeros =
             valor.replace(/\D/g, "");
 
+
         if (!numeros) {
+
             return "";
+
         }
+
 
         numeros =
             numeros.padStart(3, "0");
 
+
         let centavos =
             numeros.slice(-2);
 
+
         let reais =
             numeros.slice(0, -2);
+
 
         reais =
             reais.replace(
@@ -757,39 +1228,51 @@ R$ 5.000,00 na entrega."
                 ""
             );
 
+
         reais =
             reais.replace(
                 /\B(?=(\d{3})+(?!\d))/g,
                 "."
             );
 
-        return "R$ "
+
+        return (
+            "R$ "
             + reais
             + ","
-            + centavos;
+            + centavos
+        );
+
     }
 
 
     /* ==================================================
-       MÁSCARA DE DINHEIRO
+       APLICA MÁSCARA DE DINHEIRO
     ================================================== */
 
+
     function aplicarMascaraDinheiro(id) {
+
 
         const campo =
             document.getElementById(id);
 
+
         campo.addEventListener(
             "input",
             function(e) {
+
 
                 e.target.value =
                     formatarMoeda(
                         e.target.value
                     );
 
+
             }
         );
+
+
     }
 
 
@@ -797,31 +1280,37 @@ R$ 5.000,00 na entrega."
         "valorTransferencia"
     );
 
+
     aplicarMascaraDinheiro(
         "valorTotal"
     );
 
 
     /* ==================================================
-       MOSTRAR VALOR DA TRANSFERÊNCIA
+       TRANSFERÊNCIA
     ================================================== */
 
+
     function mostrarValor(sim) {
+
 
         const campo =
             document.getElementById(
                 "campoValorTransferencia"
             );
 
+
         const input =
             document.getElementById(
                 "valorTransferencia"
             );
 
+
         const opcaoSim =
             document.getElementById(
                 "opcaoSim"
             );
+
 
         const opcaoNao =
             document.getElementById(
@@ -833,6 +1322,7 @@ R$ 5.000,00 na entrega."
             "selecionado"
         );
 
+
         opcaoNao.classList.remove(
             "selecionado"
         );
@@ -840,114 +1330,184 @@ R$ 5.000,00 na entrega."
 
         if (sim) {
 
+
             campo.style.display =
                 "block";
 
-            input.required = true;
+
+            input.required =
+                true;
+
 
             opcaoSim.classList.add(
                 "selecionado"
             );
 
+
         }
 
         else {
 
+
             campo.style.display =
                 "none";
 
-            input.required = false;
 
-            input.value = "";
+            input.required =
+                false;
+
+
+            input.value =
+                "";
+
 
             opcaoNao.classList.add(
                 "selecionado"
             );
 
+
         }
 
     }
 
 
     /* ==================================================
-       CONSULTA AUTOMÁTICA DE CEP
-       
-       Utiliza a API pública ViaCEP.
-       
-       Exemplo:
-       https://viacep.com.br/ws/01001000/json/
+       MÁSCARA E BUSCA DE CEP
     ================================================== */
+
 
     const campoCep =
-        document.getElementById("cep");
+        document.getElementById(
+            "cep"
+        );
 
-    const campoRua =
-        document.getElementById("rua");
-
-    const campoBairro =
-        document.getElementById("bairro");
-
-    const campoCidade =
-        document.getElementById("cidade");
-
-    const campoEstado =
-        document.getElementById("estado");
 
     const statusCep =
-        document.getElementById("statusCep");
+        document.getElementById(
+            "statusCep"
+        );
+
+
+    campoCep.addEventListener(
+        "input",
+        function(e) {
+
+
+            let cep =
+                e.target.value
+                    .replace(/\D/g, "");
+
+
+            /*
+            Limita para 8 números.
+            */
+
+            if (cep.length > 8) {
+
+                cep =
+                    cep.substring(
+                        0,
+                        8
+                    );
+
+            }
+
+
+            /*
+            Coloca o hífen.
+            */
+
+            if (cep.length > 5) {
+
+                cep =
+                    cep.substring(0, 5)
+                    + "-"
+                    + cep.substring(5);
+
+            }
+
+
+            e.target.value =
+                cep;
+
+
+            /*
+            Quando chegar em 8 números,
+            consulta automaticamente.
+            */
+
+            const cepNumeros =
+                cep.replace(
+                    /\D/g,
+                    ""
+                );
+
+
+            if (
+                cepNumeros.length === 8
+            ) {
+
+                buscarCep(
+                    cepNumeros
+                );
+
+            }
+
+        }
+    );
 
 
     /* ==================================================
-       FUNÇÃO PARA LIMPAR ENDEREÇO
+       FUNÇÃO BUSCAR CEP
     ================================================== */
 
-    function limparEndereco() {
 
-        campoRua.value = "";
-        campoBairro.value = "";
-        campoCidade.value = "";
-        campoEstado.value = "";
-
-    }
-
-
-    /* ==================================================
-       FUNÇÃO CONSULTAR CEP
-    ================================================== */
-
-    async function consultarCEP() {
-
-        const cep =
-            campoCep.value
-                .replace(/\D/g, "");
+    async function buscarCep(cep) {
 
 
         /*
-        Só consulta quando
-        tiver exatamente 8 números.
+        Mostra carregando.
         */
 
-        if (cep.length !== 8) {
-
-            statusCep.style.display =
-                "none";
-
-            return;
-
-        }
-
-
-        statusCep.style.display =
-            "block";
-
         statusCep.className =
-            "status-cep";
+            "status-cep carregando";
+
 
         statusCep.textContent =
-            "Consultando CEP...";
+            "🔎 Consultando CEP...";
+
+
+        /*
+        Limpa os campos automáticos
+        antes da consulta.
+        */
+
+        document
+            .getElementById("rua")
+            .value = "";
+
+
+        document
+            .getElementById("bairro")
+            .value = "";
+
+
+        document
+            .getElementById("cidade")
+            .value = "";
+
+
+        document
+            .getElementById("estado")
+            .value = "";
 
 
         try {
+
+
+            /*
+            Consulta a API ViaCEP.
+            */
 
             const resposta =
                 await fetch(
@@ -956,6 +1516,11 @@ R$ 5.000,00 na entrega."
                     + "/json/"
                 );
 
+
+            /*
+            Verifica se a requisição
+            respondeu corretamente.
+            */
 
             if (!resposta.ok) {
 
@@ -971,19 +1536,20 @@ R$ 5.000,00 na entrega."
 
 
             /*
-            CEP válido, porém
-            não encontrado.
+            Verifica se o CEP
+            não foi encontrado.
             */
 
             if (dados.erro) {
 
-                limparEndereco();
 
                 statusCep.className =
                     "status-cep erro";
 
+
                 statusCep.textContent =
-                    "CEP não encontrado. Verifique o número.";
+                    "❌ CEP não encontrado.";
+
 
                 return;
 
@@ -991,61 +1557,71 @@ R$ 5.000,00 na entrega."
 
 
             /*
-            Preenche automaticamente
-            o endereço.
+            Preenche os campos.
             */
 
-            campoRua.value =
-                dados.logradouro || "";
+            document
+                .getElementById("rua")
+                .value =
+                    dados.logradouro || "";
 
-            campoBairro.value =
-                dados.bairro || "";
 
-            campoCidade.value =
-                dados.localidade || "";
+            document
+                .getElementById("bairro")
+                .value =
+                    dados.bairro || "";
 
-            campoEstado.value =
-                dados.uf || "";
+
+            document
+                .getElementById("cidade")
+                .value =
+                    dados.localidade || "";
 
 
             /*
-            Se a API tiver complemento,
-            podemos preencher somente
-            se o usuário ainda não digitou.
+            Estado recebe somente a SIGLA.
+            
+            Exemplo:
+            SP
+            MG
+            RJ
             */
 
-            const campoComplemento =
-                document.getElementById(
-                    "complemento"
-                );
+            document
+                .getElementById("estado")
+                .value =
+                    dados.uf || "";
 
 
-            if (
-                dados.complemento
-                &&
-                !campoComplemento.value
-            ) {
-
-                campoComplemento.value =
-                    dados.complemento;
-
-            }
-
+            /*
+            Mostra sucesso.
+            */
 
             statusCep.className =
                 "status-cep sucesso";
 
+
             statusCep.textContent =
-                "✓ Endereço localizado automaticamente.";
+                "✓ Endereço encontrado automaticamente.";
 
 
-        } catch (erro) {
+        }
+
+        catch (erro) {
+
+
+            console.error(
+                "Erro ao consultar CEP:",
+                erro
+            );
+
 
             statusCep.className =
                 "status-cep erro";
 
+
             statusCep.textContent =
-                "Não foi possível consultar o CEP. Confira sua conexão e tente novamente.";
+                "❌ Não foi possível consultar o CEP. Verifique sua conexão e tente novamente.";
 
         }
 
@@ -1053,78 +1629,9 @@ R$ 5.000,00 na entrega."
 
 
     /* ==================================================
-       MÁSCARA CEP
-       
-       Assim que chegar em 8 números,
-       a consulta é realizada automaticamente.
-    ================================================== */
-
-    campoCep.addEventListener(
-        "input",
-        function(e) {
-
-            let valor =
-                e.target.value
-                    .replace(/\D/g, "");
-
-
-            if (valor.length > 8) {
-
-                valor =
-                    valor.substring(0, 8);
-
-            }
-
-
-            if (valor.length > 5) {
-
-                valor =
-                    valor.substring(0, 5)
-                    + "-"
-                    + valor.substring(5);
-
-            }
-
-
-            e.target.value =
-                valor;
-
-
-            /*
-            Consulta automática
-            */
-
-            const cepNumeros =
-                valor.replace(/\D/g, "");
-
-
-            if (cepNumeros.length === 8) {
-
-                consultarCEP();
-
-            }
-
-        }
-    );
-
-
-    /* ==================================================
-       CONSULTA TAMBÉM AO SAIR DO CAMPO
-    ================================================== */
-
-    campoCep.addEventListener(
-        "blur",
-        function() {
-
-            consultarCEP();
-
-        }
-    );
-
-
-    /* ==================================================
        MÁSCARA TELEFONE
     ================================================== */
+
 
     document
         .getElementById("contato")
@@ -1132,53 +1639,84 @@ R$ 5.000,00 na entrega."
             "input",
             function(e) {
 
+
                 let valor =
                     e.target.value
                         .replace(/\D/g, "");
 
 
-                if (valor.length > 11) {
+                if (
+                    valor.length > 11
+                ) {
 
                     valor =
-                        valor.substring(0, 11);
+                        valor.substring(
+                            0,
+                            11
+                        );
 
                 }
 
 
-                if (valor.length <= 2) {
+                if (
+                    valor.length <= 2
+                ) {
+
 
                     e.target.value =
                         valor.length
                             ? "(" + valor
                             : "";
 
-                    return;
-
-                }
-
-
-                if (valor.length <= 6) {
-
-                    e.target.value =
-                        "("
-                        + valor.substring(0, 2)
-                        + ")"
-                        + valor.substring(2);
 
                     return;
 
                 }
 
 
-                if (valor.length <= 10) {
+                if (
+                    valor.length <= 6
+                ) {
+
 
                     e.target.value =
                         "("
-                        + valor.substring(0, 2)
+                        + valor.substring(
+                            0,
+                            2
+                        )
                         + ")"
-                        + valor.substring(2, 6)
+                        + valor.substring(
+                            2
+                        );
+
+
+                    return;
+
+                }
+
+
+                if (
+                    valor.length <= 10
+                ) {
+
+
+                    e.target.value =
+                        "("
+                        + valor.substring(
+                            0,
+                            2
+                        )
+                        + ")"
+                        + valor.substring(
+                            2,
+                            6
+                        )
                         + "-"
-                        + valor.substring(6);
+                        + valor.substring(
+                            6
+                        );
+
 
                     return;
 
@@ -1187,11 +1725,21 @@ R$ 5.000,00 na entrega."
 
                 e.target.value =
                     "("
-                    + valor.substring(0, 2)
+                    + valor.substring(
+                        0,
+                        2
+                    )
                     + ")"
-                    + valor.substring(2, 7)
+                    + valor.substring(
+                        2,
+                        7
+                    )
                     + "-"
-                    + valor.substring(7, 11);
+                    + valor.substring(
+                        7,
+                        11
+                    );
+
 
             }
         );
@@ -1201,11 +1749,13 @@ R$ 5.000,00 na entrega."
        ENVIO PARA WHATSAPP
     ================================================== */
 
+
     document
         .getElementById("formulario")
         .addEventListener(
             "submit",
             function(e) {
+
 
                 e.preventDefault();
 
@@ -1213,6 +1763,7 @@ R$ 5.000,00 na entrega."
                 /* ======================================
                    CAPTURA DOS DADOS
                 ====================================== */
+
 
                 const nome =
                     document
@@ -1271,8 +1822,7 @@ R$ 5.000,00 na entrega."
 
 
                 /*
-                Estado:
-                SOMENTE A SIGLA
+                Estado é somente a sigla.
                 */
 
                 const estado =
@@ -1287,11 +1837,15 @@ R$ 5.000,00 na entrega."
                     );
 
 
-                if (!transferenciaSelecionada) {
+                if (
+                    !transferenciaSelecionada
+                ) {
+
 
                     alert(
                         "Selecione se a transferência será feita conosco."
                     );
+
 
                     return;
 
@@ -1299,7 +1853,8 @@ R$ 5.000,00 na entrega."
 
 
                 const transferencia =
-                    transferenciaSelecionada.value;
+                    transferenciaSelecionada
+                        .value;
 
 
                 const valorTransferencia =
@@ -1330,8 +1885,9 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
-                   MONTA ENDEREÇO
+                   MONTA O ENDEREÇO
                 ====================================== */
+
 
                 let endereco =
                     "Rua/N°: "
@@ -1340,11 +1896,18 @@ R$ 5.000,00 na entrega."
                     + numero;
 
 
+                /*
+                Complemento só aparece
+                se estiver preenchido.
+                */
+
                 if (complemento) {
+
 
                     endereco +=
                         ", Complemento: "
                         + complemento;
+
 
                 }
 
@@ -1363,6 +1926,7 @@ R$ 5.000,00 na entrega."
                 /* ======================================
                    MENSAGEM WHATSAPP
                 ====================================== */
+
 
                 let mensagem =
                     "*NOVA VENDA - BOARETTO*"
@@ -1401,11 +1965,13 @@ R$ 5.000,00 na entrega."
                     transferencia === "Sim"
                 ) {
 
+
                     mensagem +=
                         "*Valor da transferência:*"
                         + "\n"
                         + valorTransferencia
                         + "\n";
+
 
                 }
 
@@ -1428,8 +1994,9 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
-                   WHATSAPP DA BOARETTO
+                   WHATSAPP BOARETTO
                 ====================================== */
+
 
                 const numeroWhatsApp =
                     "5516992365813";
@@ -1438,6 +2005,7 @@ R$ 5.000,00 na entrega."
                 /* ======================================
                    LINK WHATSAPP
                 ====================================== */
+
 
                 const url =
                     "https://wa.me/"
@@ -1449,18 +2017,22 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
-                   ABRIR WHATSAPP
+                   ABRE WHATSAPP
                 ====================================== */
+
 
                 window.open(
                     url,
                     "_blank"
                 );
 
+
             }
         );
 
+
 </script>
+
 
 </body>
 
