@@ -163,6 +163,25 @@
         }
 
         /* ==========================================
+           STATUS CEP
+        ========================================== */
+
+        .status-cep {
+            display: none;
+            margin-top: 7px;
+            font-size: 13px;
+            color: #2563eb;
+        }
+
+        .status-cep.erro {
+            color: #dc2626;
+        }
+
+        .status-cep.sucesso {
+            color: #16a34a;
+        }
+
+        /* ==========================================
            AVISO
         ========================================== */
 
@@ -277,10 +296,6 @@
 
 <div class="container">
 
-    <!-- ==========================================
-         CABEÇALHO
-    ========================================== -->
-
     <div class="logo">
         BOARETTO
     </div>
@@ -371,6 +386,8 @@
             </div>
 
 
+            <!-- RUA E NÚMERO -->
+
             <div class="linha">
 
                 <div class="campo">
@@ -384,7 +401,7 @@
                         type="text"
                         id="rua"
                         name="rua"
-                        placeholder="Nome da rua"
+                        placeholder="Digite o CEP para preencher automaticamente"
                         autocomplete="street-address"
                         required>
 
@@ -410,6 +427,8 @@
             </div>
 
 
+            <!-- COMPLEMENTO -->
+
             <div class="campo">
 
                 <label for="complemento">
@@ -425,6 +444,8 @@
             </div>
 
 
+            <!-- BAIRRO -->
+
             <div class="campo">
 
                 <label for="bairro">
@@ -436,11 +457,13 @@
                     type="text"
                     id="bairro"
                     name="bairro"
-                    placeholder="Nome do bairro"
+                    placeholder="Será preenchido automaticamente pelo CEP"
                     required>
 
             </div>
 
+
+            <!-- CEP E CIDADE -->
 
             <div class="linha-cep-cidade">
 
@@ -461,6 +484,11 @@
                         autocomplete="postal-code"
                         required>
 
+                    <div
+                        id="statusCep"
+                        class="status-cep">
+                    </div>
+
                 </div>
 
 
@@ -475,7 +503,7 @@
                         type="text"
                         id="cidade"
                         name="cidade"
-                        placeholder="Cidade"
+                        placeholder="Será preenchida automaticamente pelo CEP"
                         autocomplete="address-level2"
                         required>
 
@@ -484,9 +512,7 @@
             </div>
 
 
-            <!-- ======================================
-                 ESTADO
-            ====================================== -->
+            <!-- ESTADO -->
 
             <div class="campo">
 
@@ -504,33 +530,33 @@
                         Selecione o estado
                     </option>
 
-                    <option value="AC">Acre - AC</option>
-                    <option value="AL">Alagoas - AL</option>
-                    <option value="AP">Amapá - AP</option>
-                    <option value="AM">Amazonas - AM</option>
-                    <option value="BA">Bahia - BA</option>
-                    <option value="CE">Ceará - CE</option>
-                    <option value="DF">Distrito Federal - DF</option>
-                    <option value="ES">Espírito Santo - ES</option>
-                    <option value="GO">Goiás - GO</option>
-                    <option value="MA">Maranhão - MA</option>
-                    <option value="MT">Mato Grosso - MT</option>
-                    <option value="MS">Mato Grosso do Sul - MS</option>
-                    <option value="MG">Minas Gerais - MG</option>
-                    <option value="PA">Pará - PA</option>
-                    <option value="PB">Paraíba - PB</option>
-                    <option value="PR">Paraná - PR</option>
-                    <option value="PE">Pernambuco - PE</option>
-                    <option value="PI">Piauí - PI</option>
-                    <option value="RJ">Rio de Janeiro - RJ</option>
-                    <option value="RN">Rio Grande do Norte - RN</option>
-                    <option value="RS">Rio Grande do Sul - RS</option>
-                    <option value="RO">Rondônia - RO</option>
-                    <option value="RR">Roraima - RR</option>
-                    <option value="SC">Santa Catarina - SC</option>
-                    <option value="SP">São Paulo - SP</option>
-                    <option value="SE">Sergipe - SE</option>
-                    <option value="TO">Tocantins - TO</option>
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AP">AP</option>
+                    <option value="AM">AM</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MT">MT</option>
+                    <option value="MS">MS</option>
+                    <option value="MG">MG</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PR">PR</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RS">RS</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="SC">SC</option>
+                    <option value="SP">SP</option>
+                    <option value="SE">SE</option>
+                    <option value="TO">TO</option>
 
                 </select>
 
@@ -704,43 +730,26 @@ R$ 5.000,00 na entrega."
 
 
     /* ==================================================
-       FUNÇÃO PARA FORMATAR DINHEIRO
-       
-       Exemplo:
-       1     → R$ 0,01
-       100   → R$ 1,00
-       5000  → R$ 50,00
-       50000 → R$ 500,00
-       ================================================== */
+       FORMATAR DINHEIRO
+    ================================================== */
 
     function formatarMoeda(valor) {
 
         let numeros =
-            valor
-                .replace(/\D/g, "");
-
+            valor.replace(/\D/g, "");
 
         if (!numeros) {
-
             return "";
-
         }
-
 
         numeros =
             numeros.padStart(3, "0");
 
-
         let centavos =
             numeros.slice(-2);
 
-
         let reais =
-            numeros.slice(
-                0,
-                -2
-            );
-
+            numeros.slice(0, -2);
 
         reais =
             reais.replace(
@@ -748,19 +757,16 @@ R$ 5.000,00 na entrega."
                 ""
             );
 
-
         reais =
             reais.replace(
                 /\B(?=(\d{3})+(?!\d))/g,
                 "."
             );
 
-
         return "R$ "
             + reais
             + ","
             + centavos;
-
     }
 
 
@@ -773,7 +779,6 @@ R$ 5.000,00 na entrega."
         const campo =
             document.getElementById(id);
 
-
         campo.addEventListener(
             "input",
             function(e) {
@@ -785,14 +790,12 @@ R$ 5.000,00 na entrega."
 
             }
         );
-
     }
 
 
     aplicarMascaraDinheiro(
         "valorTransferencia"
     );
-
 
     aplicarMascaraDinheiro(
         "valorTotal"
@@ -867,43 +870,256 @@ R$ 5.000,00 na entrega."
 
 
     /* ==================================================
-       MÁSCARA CEP
+       CONSULTA AUTOMÁTICA DE CEP
+       
+       Utiliza a API pública ViaCEP.
+       
+       Exemplo:
+       https://viacep.com.br/ws/01001000/json/
     ================================================== */
 
-    document
-        .getElementById("cep")
-        .addEventListener(
-            "input",
-            function(e) {
+    const campoCep =
+        document.getElementById("cep");
 
-                let valor =
-                    e.target.value
-                        .replace(/\D/g, "");
+    const campoRua =
+        document.getElementById("rua");
 
+    const campoBairro =
+        document.getElementById("bairro");
 
-                if (valor.length > 8) {
+    const campoCidade =
+        document.getElementById("cidade");
 
-                    valor =
-                        valor.substring(0, 8);
+    const campoEstado =
+        document.getElementById("estado");
 
-                }
-
-
-                if (valor.length > 5) {
-
-                    valor =
-                        valor.substring(0, 5)
-                        + "-"
-                        + valor.substring(5);
-
-                }
+    const statusCep =
+        document.getElementById("statusCep");
 
 
-                e.target.value =
-                    valor;
+    /* ==================================================
+       FUNÇÃO PARA LIMPAR ENDEREÇO
+    ================================================== */
+
+    function limparEndereco() {
+
+        campoRua.value = "";
+        campoBairro.value = "";
+        campoCidade.value = "";
+        campoEstado.value = "";
+
+    }
+
+
+    /* ==================================================
+       FUNÇÃO CONSULTAR CEP
+    ================================================== */
+
+    async function consultarCEP() {
+
+        const cep =
+            campoCep.value
+                .replace(/\D/g, "");
+
+
+        /*
+        Só consulta quando
+        tiver exatamente 8 números.
+        */
+
+        if (cep.length !== 8) {
+
+            statusCep.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        statusCep.style.display =
+            "block";
+
+        statusCep.className =
+            "status-cep";
+
+        statusCep.textContent =
+            "Consultando CEP...";
+
+
+        try {
+
+            const resposta =
+                await fetch(
+                    "https://viacep.com.br/ws/"
+                    + cep
+                    + "/json/"
+                );
+
+
+            if (!resposta.ok) {
+
+                throw new Error(
+                    "Erro na consulta"
+                );
 
             }
-        );
+
+
+            const dados =
+                await resposta.json();
+
+
+            /*
+            CEP válido, porém
+            não encontrado.
+            */
+
+            if (dados.erro) {
+
+                limparEndereco();
+
+                statusCep.className =
+                    "status-cep erro";
+
+                statusCep.textContent =
+                    "CEP não encontrado. Verifique o número.";
+
+                return;
+
+            }
+
+
+            /*
+            Preenche automaticamente
+            o endereço.
+            */
+
+            campoRua.value =
+                dados.logradouro || "";
+
+            campoBairro.value =
+                dados.bairro || "";
+
+            campoCidade.value =
+                dados.localidade || "";
+
+            campoEstado.value =
+                dados.uf || "";
+
+
+            /*
+            Se a API tiver complemento,
+            podemos preencher somente
+            se o usuário ainda não digitou.
+            */
+
+            const campoComplemento =
+                document.getElementById(
+                    "complemento"
+                );
+
+
+            if (
+                dados.complemento
+                &&
+                !campoComplemento.value
+            ) {
+
+                campoComplemento.value =
+                    dados.complemento;
+
+            }
+
+
+            statusCep.className =
+                "status-cep sucesso";
+
+            statusCep.textContent =
+                "✓ Endereço localizado automaticamente.";
+
+
+        } catch (erro) {
+
+            statusCep.className =
+                "status-cep erro";
+
+            statusCep.textContent =
+                "Não foi possível consultar o CEP. Confira sua conexão e tente novamente.";
+
+        }
+
+    }
+
+
+    /* ==================================================
+       MÁSCARA CEP
+       
+       Assim que chegar em 8 números,
+       a consulta é realizada automaticamente.
+    ================================================== */
+
+    campoCep.addEventListener(
+        "input",
+        function(e) {
+
+            let valor =
+                e.target.value
+                    .replace(/\D/g, "");
+
+
+            if (valor.length > 8) {
+
+                valor =
+                    valor.substring(0, 8);
+
+            }
+
+
+            if (valor.length > 5) {
+
+                valor =
+                    valor.substring(0, 5)
+                    + "-"
+                    + valor.substring(5);
+
+            }
+
+
+            e.target.value =
+                valor;
+
+
+            /*
+            Consulta automática
+            */
+
+            const cepNumeros =
+                valor.replace(/\D/g, "");
+
+
+            if (cepNumeros.length === 8) {
+
+                consultarCEP();
+
+            }
+
+        }
+    );
+
+
+    /* ==================================================
+       CONSULTA TAMBÉM AO SAIR DO CAMPO
+    ================================================== */
+
+    campoCep.addEventListener(
+        "blur",
+        function() {
+
+            consultarCEP();
+
+        }
+    );
 
 
     /* ==================================================
@@ -1054,18 +1270,10 @@ R$ 5.000,00 na entrega."
                         .trim();
 
 
-                /* ======================================
-                   ESTADO
-                   
-                   IMPORTANTE:
-                   Aqui pegamos SOMENTE a sigla.
-                   
-                   Exemplo:
-                   SP
-                   MG
-                   RJ
-                   PR
-                   ====================================== */
+                /*
+                Estado:
+                SOMENTE A SIGLA
+                */
 
                 const estado =
                     document
@@ -1122,7 +1330,7 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
-                   MONTA O ENDEREÇO
+                   MONTA ENDEREÇO
                 ====================================== */
 
                 let endereco =
@@ -1131,11 +1339,6 @@ R$ 5.000,00 na entrega."
                     + ", "
                     + numero;
 
-
-                /*
-                Só adiciona complemento
-                se o vendedor preencher.
-                */
 
                 if (complemento) {
 
@@ -1158,7 +1361,7 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
-                   MONTA A MENSAGEM
+                   MENSAGEM WHATSAPP
                 ====================================== */
 
                 let mensagem =
@@ -1194,12 +1397,9 @@ R$ 5.000,00 na entrega."
                     + "\n";
 
 
-                /*
-                Só mostra o valor da transferência
-                quando a resposta for SIM.
-                */
-
-                if (transferencia === "Sim") {
+                if (
+                    transferencia === "Sim"
+                ) {
 
                     mensagem +=
                         "*Valor da transferência:*"
@@ -1236,7 +1436,7 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
-                   CRIA LINK
+                   LINK WHATSAPP
                 ====================================== */
 
                 const url =
@@ -1249,7 +1449,7 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
-                   ABRE WHATSAPP
+                   ABRIR WHATSAPP
                 ====================================== */
 
                 window.open(
