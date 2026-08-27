@@ -11,410 +11,231 @@
 
     <title>Formulário - Boaretto</title>
 
-
     <style>
 
         * {
             box-sizing: border-box;
         }
 
-
         body {
-
             margin: 0;
-
             padding: 30px 15px;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
+            font-family: Arial, Helvetica, sans-serif;
             background: #f3f4f6;
-
             color: #222;
-
         }
-
 
         .container {
-
             max-width: 700px;
-
             margin: auto;
-
             background: #ffffff;
-
             padding: 35px;
-
             border-radius: 16px;
-
-            box-shadow:
-                0 5px 25px
-                rgba(0, 0, 0, 0.08);
-
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
         }
-
 
         .logo {
-
             text-align: center;
-
             font-size: 30px;
-
             font-weight: bold;
-
             color: #1f2937;
-
             margin-bottom: 5px;
-
         }
-
 
         .titulo {
-
             text-align: center;
-
             margin: 0;
-
             color: #374151;
-
             font-size: 24px;
-
         }
-
 
         .subtitulo {
-
             text-align: center;
-
             color: #6b7280;
-
             margin: 10px 0 30px;
-
             line-height: 1.5;
-
         }
-
 
         .secao {
-
             margin-bottom: 28px;
-
         }
-
 
         .secao-titulo {
-
             font-size: 18px;
-
             font-weight: bold;
-
             color: #1f2937;
-
-            border-bottom:
-                2px solid #e5e7eb;
-
+            border-bottom: 2px solid #e5e7eb;
             padding-bottom: 10px;
-
             margin-bottom: 18px;
-
         }
-
 
         .campo {
-
             margin-bottom: 16px;
-
         }
-
 
         label {
-
             display: block;
-
             font-weight: bold;
-
             margin-bottom: 7px;
-
             color: #374151;
-
             font-size: 14px;
-
         }
-
 
         .obrigatorio {
-
             color: #dc2626;
-
         }
-
 
         input,
         textarea,
         select {
-
             width: 100%;
-
             padding: 13px 14px;
-
-            border:
-                1px solid #d1d5db;
-
+            border: 1px solid #d1d5db;
             border-radius: 8px;
-
             font-size: 15px;
-
             font-family: inherit;
-
             outline: none;
-
             transition: 0.2s;
-
             background: #fff;
-
         }
-
 
         input:focus,
         textarea:focus,
         select:focus {
-
             border-color: #2563eb;
-
-            box-shadow:
-                0 0 0 3px
-                rgba(37, 99, 235, 0.10);
-
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
         }
-
 
         textarea {
-
             min-height: 120px;
-
             resize: vertical;
-
         }
-
 
         .linha {
-
             display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
-
         }
-
 
         /* ==========================================
            STATUS DO CEP
         ========================================== */
 
         .status-cep {
-
             display: none;
-
             margin-top: 7px;
-
             font-size: 13px;
-
         }
-
 
         .status-cep.carregando {
-
             display: block;
-
             color: #2563eb;
-
         }
-
 
         .status-cep.sucesso {
-
             display: block;
-
             color: #16a34a;
-
         }
-
 
         .status-cep.erro {
-
             display: block;
-
             color: #dc2626;
-
         }
-
 
         /* ==========================================
            OPÇÕES SIM / NÃO
         ========================================== */
 
         .opcoes {
-
             display: flex;
-
             gap: 12px;
-
         }
-
 
         .opcao {
-
             flex: 1;
-
-            border:
-                2px solid #e5e7eb;
-
+            border: 2px solid #e5e7eb;
             border-radius: 9px;
-
             padding: 14px;
-
             text-align: center;
-
             cursor: pointer;
-
             transition: 0.2s;
-
             background: #fff;
-
         }
-
 
         .opcao:hover {
-
             border-color: #25D366;
-
         }
-
 
         .opcao.selecionado {
-
             background: #25D366;
-
             color: white;
-
             border-color: #25D366;
-
         }
-
 
         .opcao input {
-
             display: none;
-
         }
-
 
         /* ==========================================
            VALOR TRANSFERÊNCIA
         ========================================== */
 
         #campoValorTransferencia {
-
             display: none;
-
             margin-top: 15px;
-
         }
-
 
         /* ==========================================
            AVISO
         ========================================== */
 
         .info {
-
             background: #eff6ff;
-
-            border-left:
-                4px solid #2563eb;
-
+            border-left: 4px solid #2563eb;
             padding: 13px 15px;
-
             border-radius: 5px;
-
             color: #374151;
-
             font-size: 13px;
-
             line-height: 1.5;
-
             margin-bottom: 25px;
-
         }
-
 
         /* ==========================================
            BOTÃO
         ========================================== */
 
         .botao {
-
             width: 100%;
-
             border: none;
-
             padding: 16px;
-
             border-radius: 9px;
-
             background: #25D366;
-
             color: white;
-
             font-size: 17px;
-
             font-weight: bold;
-
             cursor: pointer;
-
             transition: 0.2s;
-
         }
-
 
         .botao:hover {
-
             background: #1ebe5d;
-
-            transform:
-                translateY(-1px);
-
+            transform: translateY(-1px);
         }
-
 
         .botao:active {
-
-            transform:
-                translateY(0);
-
+            transform: translateY(0);
         }
-
 
         /* ==========================================
            RODAPÉ
         ========================================== */
 
         .rodape {
-
             text-align: center;
-
             color: #9ca3af;
-
             font-size: 12px;
-
             margin-top: 20px;
-
         }
-
 
         /* ==========================================
            RESPONSIVO
@@ -423,85 +244,48 @@
         @media (max-width: 600px) {
 
             body {
-
-                padding:
-                    12px 8px;
-
+                padding: 12px 8px;
             }
-
 
             .container {
-
-                padding:
-                    25px 18px;
-
+                padding: 25px 18px;
                 border-radius: 12px;
-
             }
-
 
             .logo {
-
                 font-size: 26px;
-
             }
-
 
             .titulo {
-
                 font-size: 21px;
-
             }
-
 
             .subtitulo {
-
                 font-size: 14px;
-
             }
-
 
             .linha {
-
-                grid-template-columns:
-                    1fr;
-
+                grid-template-columns: 1fr;
                 gap: 0;
-
             }
-
 
             .opcoes {
-
                 flex-direction: row;
-
             }
-
 
             .opcao {
-
-                padding:
-                    13px 8px;
-
+                padding: 13px 8px;
             }
-
 
             input,
             textarea,
             select {
-
                 font-size: 16px;
-
             }
 
-
             .botao {
-
-                padding:
-                    17px 12px;
-
+                padding: 17px 12px;
                 font-size: 16px;
-
             }
 
         }
@@ -525,31 +309,20 @@
         BOARETTO
     </div>
 
-
     <h1 class="titulo">
         Dados do Comprador
     </h1>
 
-
     <p class="subtitulo">
-
         Preencha os dados abaixo com atenção.
-
         Após preencher, clique em
-
-        <strong>
-            Enviar dados pelo WhatsApp
-        </strong>.
-
+        <strong>Enviar dados pelo WhatsApp</strong>.
     </p>
-
 
     <div class="info">
 
         <strong>Importante:</strong>
-
         confira todos os dados antes de enviar.
-
         As informações serão encaminhadas
         diretamente para o WhatsApp da Boaretto.
 
@@ -560,11 +333,113 @@
 
 
         <!-- ==========================================
-             DADOS DO COMPRADOR
+             1. DADOS DO VEÍCULO
         ========================================== -->
 
         <div class="secao">
 
+            <div class="secao-titulo">
+                🚗 Dados do veículo
+            </div>
+
+            <div class="campo">
+
+                <label for="dadosVeiculo">
+
+                    Dados do veículo
+
+                    <span class="obrigatorio">
+                        *
+                    </span>
+
+                </label>
+
+                <textarea
+                    id="dadosVeiculo"
+                    name="dadosVeiculo"
+                    placeholder="Informe os dados do veículo.
+
+Exemplo:
+Marca: Volkswagen
+Modelo: T-Cross Highline
+Ano: 2024/2025
+Cor: Branco
+Placa: ABC1D23
+Chassi: XXXXXXX
+Renavam: XXXXXXX
+Quilometragem: 25.000 km"
+                    required></textarea>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             2. DADOS DA VENDA
+        ========================================== -->
+
+        <div class="secao">
+
+            <div class="secao-titulo">
+                💰 Dados da venda
+            </div>
+
+            <div class="campo">
+
+                <label for="formaPagamento">
+
+                    Dados da forma de pagamento detalhada
+
+                    <span class="obrigatorio">
+                        *
+                    </span>
+
+                </label>
+
+                <textarea
+                    id="formaPagamento"
+                    name="formaPagamento"
+                    placeholder="Informe detalhadamente como será realizado o pagamento.
+
+Exemplo:
+R$ 20.000,00 de entrada via PIX;
+R$ 30.000,00 financiado em 36 parcelas;
+R$ 5.000,00 na entrega."
+                    required></textarea>
+
+            </div>
+
+            <div class="campo">
+
+                <label for="valorTotal">
+
+                    Valor total da venda
+
+                    <span class="obrigatorio">
+                        *
+                    </span>
+
+                </label>
+
+                <input
+                    type="text"
+                    id="valorTotal"
+                    name="valorTotal"
+                    placeholder="R$ 0,00"
+                    inputmode="numeric"
+                    required>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             3. DADOS DO COMPRADOR
+        ========================================== -->
+
+        <div class="secao">
 
             <div class="secao-titulo">
                 👤 Dados do comprador
@@ -584,7 +459,6 @@
                     </span>
 
                 </label>
-
 
                 <input
                     type="text"
@@ -610,7 +484,6 @@
                     </span>
 
                 </label>
-
 
                 <input
                     type="text"
@@ -639,7 +512,6 @@
 
                 </label>
 
-
                 <input
                     type="text"
                     id="rg"
@@ -667,7 +539,6 @@
 
                 </label>
 
-
                 <input
                     type="tel"
                     id="contato"
@@ -680,81 +551,23 @@
 
             </div>
 
-
         </div>
 
 
         <!-- ==========================================
-             DADOS DO VEÍCULO
+             4. ENDEREÇO
         ========================================== -->
 
         <div class="secao">
 
-
             <div class="secao-titulo">
-
-                🚗 Dados do veículo
-
-            </div>
-
-
-            <div class="campo">
-
-
-                <label for="dadosVeiculo">
-
-                    Dados do veículo
-
-                    <span class="obrigatorio">
-                        *
-                    </span>
-
-                </label>
-
-
-                <textarea
-                    id="dadosVeiculo"
-                    name="dadosVeiculo"
-                    placeholder="Informe os dados do veículo.
-
-Exemplo:
-Marca: Volkswagen
-Modelo: T-Cross Highline
-Ano: 2024/2025
-Cor: Branco
-Placa: ABC1D23
-Chassi: XXXXXXX
-Renavam: XXXXXXX
-Quilometragem: 25.000 km"
-                    required></textarea>
-
-
-            </div>
-
-
-        </div>
-
-
-        <!-- ==========================================
-             ENDEREÇO
-        ========================================== -->
-
-        <div class="secao">
-
-
-            <div class="secao-titulo">
-
                 📍 Endereço
-
             </div>
 
 
-            <!-- ======================================
-                 CEP PRIMEIRO
-            ====================================== -->
+            <!-- CEP -->
 
             <div class="campo">
-
 
                 <label for="cep">
 
@@ -766,7 +579,6 @@ Quilometragem: 25.000 km"
 
                 </label>
 
-
                 <input
                     type="text"
                     id="cep"
@@ -777,22 +589,17 @@ Quilometragem: 25.000 km"
                     autocomplete="postal-code"
                     required>
 
-
                 <div
                     id="statusCep"
                     class="status-cep">
                 </div>
 
-
             </div>
 
 
-            <!-- ======================================
-                 RUA E NÚMERO
-            ====================================== -->
+            <!-- RUA E NÚMERO -->
 
             <div class="linha">
-
 
                 <div class="campo">
 
@@ -805,7 +612,6 @@ Quilometragem: 25.000 km"
                         </span>
 
                     </label>
-
 
                     <input
                         type="text"
@@ -830,7 +636,6 @@ Quilometragem: 25.000 km"
 
                     </label>
 
-
                     <input
                         type="text"
                         id="numero"
@@ -840,23 +645,16 @@ Quilometragem: 25.000 km"
 
                 </div>
 
-
             </div>
 
 
-            <!-- ======================================
-                 COMPLEMENTO
-            ====================================== -->
+            <!-- COMPLEMENTO -->
 
             <div class="campo">
 
-
                 <label for="complemento">
-
                     Complemento
-
                 </label>
-
 
                 <input
                     type="text"
@@ -864,16 +662,12 @@ Quilometragem: 25.000 km"
                     name="complemento"
                     placeholder="Apartamento, casa, bloco, etc.">
 
-
             </div>
 
 
-            <!-- ======================================
-                 BAIRRO
-            ====================================== -->
+            <!-- BAIRRO -->
 
             <div class="campo">
-
 
                 <label for="bairro">
 
@@ -885,7 +679,6 @@ Quilometragem: 25.000 km"
 
                 </label>
 
-
                 <input
                     type="text"
                     id="bairro"
@@ -893,16 +686,12 @@ Quilometragem: 25.000 km"
                     placeholder="Será preenchido pelo CEP"
                     required>
 
-
             </div>
 
 
-            <!-- ======================================
-                 CIDADE
-            ====================================== -->
+            <!-- CIDADE -->
 
             <div class="campo">
-
 
                 <label for="cidade">
 
@@ -914,7 +703,6 @@ Quilometragem: 25.000 km"
 
                 </label>
 
-
                 <input
                     type="text"
                     id="cidade"
@@ -923,16 +711,12 @@ Quilometragem: 25.000 km"
                     autocomplete="address-level2"
                     required>
 
-
             </div>
 
 
-            <!-- ======================================
-                 ESTADO
-            ====================================== -->
+            <!-- ESTADO -->
 
             <div class="campo">
-
 
                 <label for="estado">
 
@@ -944,17 +728,14 @@ Quilometragem: 25.000 km"
 
                 </label>
 
-
                 <select
                     id="estado"
                     name="estado"
                     required>
 
-
                     <option value="">
                         Selecione o estado
                     </option>
-
 
                     <option value="AC">AC</option>
                     <option value="AL">AL</option>
@@ -984,32 +765,24 @@ Quilometragem: 25.000 km"
                     <option value="SE">SE</option>
                     <option value="TO">TO</option>
 
-
                 </select>
 
-
             </div>
-
 
         </div>
 
 
         <!-- ==========================================
-             TRANSFERÊNCIA
+             5. TRANSFERÊNCIA
         ========================================== -->
 
         <div class="secao">
 
-
             <div class="secao-titulo">
-
                 📄 Transferência
-
             </div>
 
-
             <div class="campo">
-
 
                 <label>
 
@@ -1021,14 +794,11 @@ Quilometragem: 25.000 km"
 
                 </label>
 
-
                 <div class="opcoes">
-
 
                     <label
                         class="opcao"
                         id="opcaoSim">
-
 
                         <input
                             type="radio"
@@ -1037,11 +807,9 @@ Quilometragem: 25.000 km"
                             onclick="mostrarValor(true)"
                             required>
 
-
                         <span>
                             SIM
                         </span>
-
 
                     </label>
 
@@ -1050,7 +818,6 @@ Quilometragem: 25.000 km"
                         class="opcao"
                         id="opcaoNao">
 
-
                         <input
                             type="radio"
                             name="transferencia"
@@ -1058,17 +825,13 @@ Quilometragem: 25.000 km"
                             onclick="mostrarValor(false)"
                             required>
 
-
                         <span>
                             NÃO
                         </span>
 
-
                     </label>
 
-
                 </div>
-
 
             </div>
 
@@ -1076,7 +839,6 @@ Quilometragem: 25.000 km"
             <div
                 class="campo"
                 id="campoValorTransferencia">
-
 
                 <label for="valorTransferencia">
 
@@ -1088,7 +850,6 @@ Quilometragem: 25.000 km"
 
                 </label>
 
-
                 <input
                     type="text"
                     id="valorTransferencia"
@@ -1096,81 +857,7 @@ Quilometragem: 25.000 km"
                     placeholder="R$ 0,00"
                     inputmode="numeric">
 
-
             </div>
-
-
-        </div>
-
-
-        <!-- ==========================================
-             DADOS DA VENDA
-        ========================================== -->
-
-        <div class="secao">
-
-
-            <div class="secao-titulo">
-
-                💰 Dados da venda
-
-            </div>
-
-
-            <div class="campo">
-
-
-                <label for="formaPagamento">
-
-                    Dados da forma de pagamento detalhada
-
-                    <span class="obrigatorio">
-                        *
-                    </span>
-
-                </label>
-
-
-                <textarea
-                    id="formaPagamento"
-                    name="formaPagamento"
-                    placeholder="Informe detalhadamente como será realizado o pagamento.
-
-Exemplo:
-R$ 20.000,00 de entrada via PIX;
-R$ 30.000,00 financiado em 36 parcelas;
-R$ 5.000,00 na entrega."
-                    required></textarea>
-
-
-            </div>
-
-
-            <div class="campo">
-
-
-                <label for="valorTotal">
-
-                    Valor total da venda
-
-                    <span class="obrigatorio">
-                        *
-                    </span>
-
-                </label>
-
-
-                <input
-                    type="text"
-                    id="valorTotal"
-                    name="valorTotal"
-                    placeholder="R$ 0,00"
-                    inputmode="numeric"
-                    required>
-
-
-            </div>
-
 
         </div>
 
@@ -1192,9 +879,7 @@ R$ 5.000,00 na entrega."
 
 
     <div class="rodape">
-
         Boaretto — Formulário de dados
-
     </div>
 
 
@@ -1213,25 +898,18 @@ R$ 5.000,00 na entrega."
         let numeros =
             valor.replace(/\D/g, "");
 
-
         if (!numeros) {
-
             return "";
-
         }
-
 
         numeros =
             numeros.padStart(3, "0");
 
-
         let centavos =
             numeros.slice(-2);
 
-
         let reais =
             numeros.slice(0, -2);
-
 
         reais =
             reais.replace(
@@ -1239,13 +917,11 @@ R$ 5.000,00 na entrega."
                 ""
             );
 
-
         reais =
             reais.replace(
                 /\B(?=(\d{3})+(?!\d))/g,
                 "."
             );
-
 
         return (
             "R$ "
@@ -1265,7 +941,6 @@ R$ 5.000,00 na entrega."
 
         const campo =
             document.getElementById(id);
-
 
         campo.addEventListener(
             "input",
@@ -1306,7 +981,6 @@ R$ 5.000,00 na entrega."
                     e.target.value
                         .replace(/\D/g, "");
 
-
                 if (valor.length > 11) {
 
                     valor =
@@ -1316,7 +990,6 @@ R$ 5.000,00 na entrega."
                         );
 
                 }
-
 
                 if (valor.length > 9) {
 
@@ -1351,7 +1024,6 @@ R$ 5.000,00 na entrega."
 
                 }
 
-
                 e.target.value =
                     valor;
 
@@ -1373,17 +1045,11 @@ R$ 5.000,00 na entrega."
                     e.target.value
                         .toUpperCase();
 
-                /*
-                Permite números,
-                letras e hífen.
-                */
-
                 valor =
                     valor.replace(
                         /[^0-9A-Z.-]/g,
                         ""
                     );
-
 
                 if (valor.length > 20) {
 
@@ -1394,7 +1060,6 @@ R$ 5.000,00 na entrega."
                         );
 
                 }
-
 
                 e.target.value =
                     valor;
@@ -1414,44 +1079,36 @@ R$ 5.000,00 na entrega."
                 "campoValorTransferencia"
             );
 
-
         const input =
             document.getElementById(
                 "valorTransferencia"
             );
-
 
         const opcaoSim =
             document.getElementById(
                 "opcaoSim"
             );
 
-
         const opcaoNao =
             document.getElementById(
                 "opcaoNao"
             );
 
-
         opcaoSim.classList.remove(
             "selecionado"
         );
 
-
         opcaoNao.classList.remove(
             "selecionado"
         );
-
 
         if (sim) {
 
             campo.style.display =
                 "block";
 
-
             input.required =
                 true;
-
 
             opcaoSim.classList.add(
                 "selecionado"
@@ -1464,14 +1121,11 @@ R$ 5.000,00 na entrega."
             campo.style.display =
                 "none";
 
-
             input.required =
                 false;
 
-
             input.value =
                 "";
-
 
             opcaoNao.classList.add(
                 "selecionado"
@@ -1491,7 +1145,6 @@ R$ 5.000,00 na entrega."
             "cep"
         );
 
-
     const statusCep =
         document.getElementById(
             "statusCep"
@@ -1502,11 +1155,9 @@ R$ 5.000,00 na entrega."
         "input",
         function(e) {
 
-
             let cep =
                 e.target.value
                     .replace(/\D/g, "");
-
 
             if (cep.length > 8) {
 
@@ -1518,7 +1169,6 @@ R$ 5.000,00 na entrega."
 
             }
 
-
             if (cep.length > 5) {
 
                 cep =
@@ -1528,17 +1178,14 @@ R$ 5.000,00 na entrega."
 
             }
 
-
             e.target.value =
                 cep;
-
 
             const cepNumeros =
                 cep.replace(
                     /\D/g,
                     ""
                 );
-
 
             if (
                 cepNumeros.length === 8
@@ -1560,33 +1207,24 @@ R$ 5.000,00 na entrega."
 
     async function buscarCep(cep) {
 
-
         statusCep.className =
             "status-cep carregando";
-
 
         statusCep.textContent =
             "🔎 Consultando CEP...";
 
 
-        /*
-        Limpa os campos automáticos.
-        */
-
         document
             .getElementById("rua")
             .value = "";
-
 
         document
             .getElementById("bairro")
             .value = "";
 
-
         document
             .getElementById("cidade")
             .value = "";
-
 
         document
             .getElementById("estado")
@@ -1594,7 +1232,6 @@ R$ 5.000,00 na entrega."
 
 
         try {
-
 
             const resposta =
                 await fetch(
@@ -1619,24 +1256,16 @@ R$ 5.000,00 na entrega."
 
             if (dados.erro) {
 
-
                 statusCep.className =
                     "status-cep erro";
 
-
                 statusCep.textContent =
                     "❌ CEP não encontrado.";
-
 
                 return;
 
             }
 
-
-            /*
-            Preenche automaticamente
-            o endereço.
-            */
 
             document
                 .getElementById("rua")
@@ -1665,25 +1294,20 @@ R$ 5.000,00 na entrega."
             statusCep.className =
                 "status-cep sucesso";
 
-
             statusCep.textContent =
                 "✓ Endereço encontrado automaticamente.";
 
         }
 
-
         catch (erro) {
-
 
             console.error(
                 "Erro ao consultar CEP:",
                 erro
             );
 
-
             statusCep.className =
                 "status-cep erro";
-
 
             statusCep.textContent =
                 "❌ Não foi possível consultar o CEP. Verifique sua conexão e tente novamente.";
@@ -1703,11 +1327,9 @@ R$ 5.000,00 na entrega."
             "input",
             function(e) {
 
-
                 let valor =
                     e.target.value
                         .replace(/\D/g, "");
-
 
                 if (valor.length > 11) {
 
@@ -1719,7 +1341,6 @@ R$ 5.000,00 na entrega."
 
                 }
 
-
                 if (valor.length <= 2) {
 
                     e.target.value =
@@ -1730,7 +1351,6 @@ R$ 5.000,00 na entrega."
                     return;
 
                 }
-
 
                 if (valor.length <= 6) {
 
@@ -1748,7 +1368,6 @@ R$ 5.000,00 na entrega."
                     return;
 
                 }
-
 
                 if (valor.length <= 10) {
 
@@ -1771,7 +1390,6 @@ R$ 5.000,00 na entrega."
                     return;
 
                 }
-
 
                 e.target.value =
                     "("
@@ -1804,12 +1422,46 @@ R$ 5.000,00 na entrega."
             "submit",
             function(e) {
 
-
                 e.preventDefault();
 
 
                 /* ======================================
-                   DADOS DO COMPRADOR
+                   1. DADOS DO VEÍCULO
+                ====================================== */
+
+                const dadosVeiculo =
+                    document
+                        .getElementById(
+                            "dadosVeiculo"
+                        )
+                        .value
+                        .trim();
+
+
+                /* ======================================
+                   2. DADOS DA VENDA
+                ====================================== */
+
+                const formaPagamento =
+                    document
+                        .getElementById(
+                            "formaPagamento"
+                        )
+                        .value
+                        .trim();
+
+
+                const valorTotal =
+                    document
+                        .getElementById(
+                            "valorTotal"
+                        )
+                        .value
+                        .trim();
+
+
+                /* ======================================
+                   3. DADOS DO COMPRADOR
                 ====================================== */
 
                 const nome =
@@ -1841,20 +1493,7 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
-                   DADOS DO VEÍCULO
-                ====================================== */
-
-                const dadosVeiculo =
-                    document
-                        .getElementById(
-                            "dadosVeiculo"
-                        )
-                        .value
-                        .trim();
-
-
-                /* ======================================
-                   ENDEREÇO
+                   4. ENDEREÇO
                 ====================================== */
 
                 const cep =
@@ -1906,7 +1545,7 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
-                   TRANSFERÊNCIA
+                   5. TRANSFERÊNCIA
                 ====================================== */
 
                 const transferenciaSelecionada =
@@ -1919,11 +1558,9 @@ R$ 5.000,00 na entrega."
                     !transferenciaSelecionada
                 ) {
 
-
                     alert(
                         "Selecione se a transferência será feita conosco."
                     );
-
 
                     return;
 
@@ -1939,28 +1576,6 @@ R$ 5.000,00 na entrega."
                     document
                         .getElementById(
                             "valorTransferencia"
-                        )
-                        .value
-                        .trim();
-
-
-                /* ======================================
-                   DADOS DA VENDA
-                ====================================== */
-
-                const formaPagamento =
-                    document
-                        .getElementById(
-                            "formaPagamento"
-                        )
-                        .value
-                        .trim();
-
-
-                const valorTotal =
-                    document
-                        .getElementById(
-                            "valorTotal"
                         )
                         .value
                         .trim();
@@ -2011,7 +1626,41 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
-                   COMPRADOR
+                   1. VEÍCULO
+                ====================================== */
+
+                mensagem +=
+                    "*DADOS DO VEÍCULO:*"
+                    + "\n"
+                    + dadosVeiculo
+                    + "\n\n";
+
+
+                /* ======================================
+                   2. DADOS DA VENDA
+                ====================================== */
+
+                mensagem +=
+                    "*DADOS DA VENDA:*"
+                    + "\n\n";
+
+
+                mensagem +=
+                    "*Forma de pagamento:*"
+                    + "\n"
+                    + formaPagamento
+                    + "\n\n";
+
+
+                mensagem +=
+                    "*Valor total da venda:*"
+                    + "\n"
+                    + valorTotal
+                    + "\n\n";
+
+
+                /* ======================================
+                   3. COMPRADOR
                 ====================================== */
 
                 mensagem +=
@@ -2048,18 +1697,7 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
-                   VEÍCULO
-                ====================================== */
-
-                mensagem +=
-                    "*DADOS DO VEÍCULO:*"
-                    + "\n"
-                    + dadosVeiculo
-                    + "\n\n";
-
-
-                /* ======================================
-                   ENDEREÇO
+                   4. ENDEREÇO
                 ====================================== */
 
                 mensagem +=
@@ -2070,7 +1708,7 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
-                   TRANSFERÊNCIA
+                   5. TRANSFERÊNCIA
                 ====================================== */
 
                 mensagem +=
@@ -2098,32 +1736,6 @@ R$ 5.000,00 na entrega."
                 }
 
 
-                mensagem +=
-                    "\n";
-
-
-                /* ======================================
-                   VENDA
-                ====================================== */
-
-                mensagem +=
-                    "*DADOS DA VENDA:*"
-                    + "\n\n";
-
-
-                mensagem +=
-                    "*Forma de pagamento:*"
-                    + "\n"
-                    + formaPagamento
-                    + "\n\n";
-
-
-                mensagem +=
-                    "*Valor total da venda:*"
-                    + "\n"
-                    + valorTotal;
-
-
                 /* ======================================
                    WHATSAPP BOARETTO
                 ====================================== */
@@ -2131,10 +1743,6 @@ R$ 5.000,00 na entrega."
                 const numeroWhatsApp =
                     "5516992365813";
 
-
-                /* ======================================
-                   CRIA LINK
-                ====================================== */
 
                 const url =
                     "https://wa.me/"
@@ -2144,10 +1752,6 @@ R$ 5.000,00 na entrega."
                         mensagem
                     );
 
-
-                /* ======================================
-                   ABRE WHATSAPP
-                ====================================== */
 
                 window.open(
                     url,
