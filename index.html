@@ -342,6 +342,9 @@
                 🚗 Dados do veículo
             </div>
 
+
+            <!-- DADOS DO VEÍCULO -->
+
             <div class="campo">
 
                 <label for="dadosVeiculo">
@@ -366,9 +369,36 @@ Ano: 2024/2025
 Cor: Branco
 Placa: ABC1D23
 Chassi: XXXXXXX
-Renavam: XXXXXXX
-Quilometragem: 25.000 km"
+Renavam: XXXXXXX"
                     required></textarea>
+
+            </div>
+
+
+            <!-- ======================================
+                 QUILOMETRAGEM
+            ====================================== -->
+
+            <div class="campo">
+
+                <label for="quilometragem">
+
+                    Quilometragem (KM)
+
+                    <span class="obrigatorio">
+                        *
+                    </span>
+
+                </label>
+
+                <input
+                    type="text"
+                    id="quilometragem"
+                    name="quilometragem"
+                    placeholder="Ex.: 25.000 km"
+                    inputmode="numeric"
+                    maxlength="12"
+                    required>
 
             </div>
 
@@ -968,6 +998,39 @@ R$ 5.000,00 na entrega."
 
 
     /* ==================================================
+       MÁSCARA DE QUILOMETRAGEM
+    ================================================== */
+
+    document
+        .getElementById("quilometragem")
+        .addEventListener(
+            "input",
+            function(e) {
+
+                let valor =
+                    e.target.value
+                        .replace(/\D/g, "");
+
+                if (!valor) {
+
+                    e.target.value = "";
+
+                    return;
+
+                }
+
+                valor =
+                    Number(valor)
+                        .toLocaleString("pt-BR");
+
+                e.target.value =
+                    valor + " km";
+
+            }
+        );
+
+
+    /* ==================================================
        MÁSCARA CPF
     ================================================== */
 
@@ -1439,6 +1502,19 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
+                   QUILOMETRAGEM
+                ====================================== */
+
+                const quilometragem =
+                    document
+                        .getElementById(
+                            "quilometragem"
+                        )
+                        .value
+                        .trim();
+
+
+                /* ======================================
                    2. DADOS DA VENDA
                 ====================================== */
 
@@ -1637,6 +1713,17 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
+                   QUILOMETRAGEM
+                ====================================== */
+
+                mensagem +=
+                    "*Quilometragem:*"
+                    + "\n"
+                    + quilometragem
+                    + "\n\n";
+
+
+                /* ======================================
                    2. DADOS DA VENDA
                 ====================================== */
 
@@ -1752,6 +1839,23 @@ R$ 5.000,00 na entrega."
                         mensagem
                     );
 
+
+                /* ======================================
+                   ALERTA DE DOCUMENTOS
+                ====================================== */
+
+                alert(
+                    "⚠️ ATENÇÃO!\n\n" +
+                    "Antes de finalizar, lembre-se de enviar também:\n\n" +
+                    "📄 CNH ATUALIZADA do cliente\n" +
+                    "🏠 COMPROVANTE DE RESIDÊNCIA ATUALIZADO do cliente\n\n" +
+                    "Confira se os dois documentos foram enviados."
+                );
+
+
+                /* ======================================
+                   ABRE O WHATSAPP
+                ====================================== */
 
                 window.open(
                     url,
