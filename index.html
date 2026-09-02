@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -294,12 +295,9 @@
 
 </head>
 
-
 <body>
 
-
 <div class="container">
-
 
     <!-- ==========================================
          CABEÇALHO
@@ -343,8 +341,6 @@
             </div>
 
 
-            <!-- DADOS DO VEÍCULO -->
-
             <div class="campo">
 
                 <label for="dadosVeiculo">
@@ -375,9 +371,7 @@ Renavam: XXXXXXX"
             </div>
 
 
-            <!-- ======================================
-                 QUILOMETRAGEM
-            ====================================== -->
+            <!-- QUILOMETRAGEM -->
 
             <div class="campo">
 
@@ -415,6 +409,7 @@ Renavam: XXXXXXX"
                 💰 Dados da venda
             </div>
 
+
             <div class="campo">
 
                 <label for="formaPagamento">
@@ -439,6 +434,7 @@ R$ 5.000,00 na entrega."
                     required></textarea>
 
             </div>
+
 
             <div class="campo">
 
@@ -577,6 +573,33 @@ R$ 5.000,00 na entrega."
                     autocomplete="tel"
                     inputmode="tel"
                     maxlength="15"
+                    required>
+
+            </div>
+
+
+            <!-- ======================================
+                 E-MAIL DO CLIENTE
+            ====================================== -->
+
+            <div class="campo">
+
+                <label for="email">
+
+                    E-mail
+
+                    <span class="obrigatorio">
+                        *
+                    </span>
+
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Digite o e-mail do comprador"
+                    autocomplete="email"
                     required>
 
             </div>
@@ -1569,6 +1592,17 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
+                   E-MAIL DO CLIENTE
+                ====================================== */
+
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+
+                /* ======================================
                    4. ENDEREÇO
                 ====================================== */
 
@@ -1784,6 +1818,17 @@ R$ 5.000,00 na entrega."
 
 
                 /* ======================================
+                   E-MAIL
+                ====================================== */
+
+                mensagem +=
+                    "*E-mail:*"
+                    + "\n"
+                    + email
+                    + "\n\n";
+
+
+                /* ======================================
                    4. ENDEREÇO
                 ====================================== */
 
@@ -1867,7 +1912,7 @@ R$ 5.000,00 na entrega."
 
 </script>
 
-
 </body>
 
 </html>
+```
